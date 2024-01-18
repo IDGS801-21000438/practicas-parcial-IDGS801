@@ -17,9 +17,9 @@ class practica:
               listaPrimos = [num for num in lista 
                              if all(num % i != 0 for i in range(2, int(num**0.5) + 1))]
               
-              print("Lista original: ", lista)
-              print("Lista de números pares: ", listaPares)
-              print("Lista de números primos: ", listaPrimos)
+              print("Lista : ", lista)
+              print("Lista de numeros pares: ", listaPares)
+              print("Lista de numeros primos: ", listaPrimos)
 
              
 
