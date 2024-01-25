@@ -1,3 +1,37 @@
+from flask import Flask, render_template, request
+
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+    return render_template("index.html")
+
+@app.route("/resultado", methods=["GET","POST"])
+def calcular():
+    operacion = request.form.get("operacion")
+    num1 = request.form.get("num1")
+    num2 = request.form.get("num2")
+
+    if operacion == "suma":
+        resultado = int(num1) + int(num2)
+    elif operacion == "resta":
+        resultado = int(num1) - int(num2)
+    elif operacion == "multiplicacion":
+        resultado = int(num1) * int(num2)
+    elif operacion == "division":
+        if int(num2) == 0:
+            resultado = "División por cero no permitida"
+        else:
+            resultado = int(num1) / int(num2)
+    else:
+        resultado = "Operación no válida"
+
+    return f"El resultado de la {operacion} es: {resultado}"
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
+     
 class practica:
     
         def __init__(self):   
@@ -8,28 +42,13 @@ class practica:
                 print("*" * punto)
 
 
-        def listaParcial(self):
-              lista = list(range(int(self.numero)))
-              lista.sort()
-              listaPares = [num for num in lista 
-                            if num % 2 == 0]
-              
-              listaPrimos = [num for num in lista 
-                             if all(num % i != 0 for i in range(2, int(num**0.5) + 1))]
-              
-              print("Lista : ", lista)
-              print("Lista de numeros pares: ", listaPares)
-              print("Lista de numeros primos: ", listaPrimos)
+        
 
              
 
 
 
-def main():
-        obj = practica()
-        obj.listaParcial()
-        obj2 = practica()
-        obj2.imprime()
+
 
 if __name__=="__main__":
-        main()
+        app.run(debug=True)
