@@ -1,0 +1,36 @@
+{% block content %} {% import "_macros.html" as macros %}
+
+<form action="" method="POST" novalidate>
+  <div class="row control-group">
+    <div class="form-group col-xs-12 floating-label-form-group controls">
+      {{macros.camposNuevos(form.primerX, class='form-control')}}
+    </div>
+  </div>
+  <div class="row control-group">
+    <div class="form-group col-xs-12 floating-label-form-group controls">
+      {{macros.camposNuevos(form.primerY, class='form-control')}}
+    </div>
+  </div>
+  <div class="row control-group">
+    <div class="form-group col-xs-12 floating-label-form-group controls">
+      {{macros.camposNuevos(form.segundoX, class='form-control')}}
+    </div>
+  </div>
+  <div class="row control-group">
+    <div class="form-group col-xs-12 floating-label-form-group controls">
+      {{macros.camposNuevos(form.segundoY, class='form-control')}}
+    </div>
+  </div>
+
+  <button type="submit" id="btn1" name="btn1" class="btn btn-primary">
+    Registrar
+  </button>
+</form>
+
+<p>Distancia: {{distanciaTotal}}</p>
+<p>x1: {{primerX}}</p>
+<p>y1: {{primerY}}</p>
+<p>x2: {{segundoX}}</p>
+<p>y2: {{segundoY}}</p>
+
+{%endblock%}

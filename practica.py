@@ -1,10 +1,32 @@
-from flask import Flask, render_template, request
-
+from cmath import sqrt
+import math
+from flask import Flask, render_template,request
+import forms 
 app = Flask(__name__)
 
 @app.route("/")
 def index():
     return render_template("index.html")
+
+@app.route("/distancia", methods = ['GET','POST'])
+def distancia():
+     distancia_clase = forms.formularioDistancia(request.form)
+     primerX, primerY, segundoX, segundoY, distanciaTotal = None, None, None, None, None
+
+     if request.method == 'POST':
+        primerX = distancia_clase.primerX.data
+        primerY = distancia_clase.primerY.data
+        segundoX = distancia_clase.segundoX.data
+        segundoY = distancia_clase.segundoY.data
+        numero1 = segundoX - primerX
+        numero2 = segundoY - primerY
+        distanciaTotal = math.sqrt((segundoX-primerX)**2 + (segundoY - primerY)**2)
+
+        print("Distancia: {}".format(distanciaTotal))
+
+
+
+     return render_template("distanciaForm.html", form = distancia_clase,primerX = primerX, primerY = primerY, segundoX = segundoX,segundoY = segundoY,distanciaTotal=distanciaTotal)
 
 @app.route("/resultado", methods=["GET","POST"])
 def calcular():
