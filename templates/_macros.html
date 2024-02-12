@@ -2,6 +2,9 @@
 
 <p><input name="{{name}}" type="{{type}}" placeholder="{{placeholder}}" /></p>
 
+{%endmacro%} {%macro resistencia(field)%}
+<td>{{field.label}}</td>
+<dd>{{field(**kwargs) | safe}}</dd>
 {%endmacro%} {%macro camposNuevos(field)%}
 <td>{{field.label}}</td>
 <dd>{{field(**kwargs) | safe}}</dd>

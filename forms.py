@@ -9,3 +9,10 @@ class formularioDistancia (Form):
     segundoX = IntegerField ('segundoX')
     segundoY = IntegerField('segundoY')
     
+
+class formularioResistencias (Form):
+
+    primeraBanda = IntegerField ('PrimeraBanda')
+    segundaBanda = IntegerField ('SegundaBanda')
+    terceraBanda = IntegerField ('TerceraBanda')
+    rbTolerancia = StringField ('rbTolerancia')

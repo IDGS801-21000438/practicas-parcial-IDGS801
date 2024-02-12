@@ -1,0 +1,158 @@
+<style>
+  /* Estilos para la tabla */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  th,
+  td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  /* Estilos para el formulario */
+  .selectBanda {
+    margin-bottom: 10px;
+  }
+
+  .selectBanda select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  .rbTolerancia {
+    margin-bottom: 10px;
+  }
+
+  .rbTolerancia label {
+    margin-right: 10px;
+  }
+
+  button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #45a049;
+  }
+</style>
+
+<!---->
+<form action="" method="POST" novalidate>
+  <div class="selectBanda">
+    <select name="primeraBanda" id="primeraBanda">
+      <option value="0">Negro</option>
+      <option value="1">Cafe</option>
+      <option value="2">Rojo</option>
+      <option value="3">Naranja</option>
+      <option value="4">Amarillo</option>
+      <option value="5">Verde</option>
+      <option value="6">Azul</option>
+      <option value="7">Violeta</option>
+      <option value="8">Gris</option>
+      <option value="9">Blanco</option>
+    </select>
+  </div>
+  <div class="selectBanda">
+    <select name="segundaBanda" id="segundaBanda">
+      <option value="0">Negro</option>
+      <option value="1">Cafe</option>
+      <option value="2">Rojo</option>
+      <option value="3">Naranja</option>
+      <option value="4">Amarillo</option>
+      <option value="5">Verde</option>
+      <option value="6">Azul</option>
+      <option value="7">Violeta</option>
+      <option value="8">Gris</option>
+      <option value="9">Blanco</option>
+    </select>
+  </div>
+  <div class="selectBanda">
+    <select name="terceraBanda" id="terceraBanda">
+      <option value="10">Negro</option>
+      <option value="100">Cafe</option>
+      <option value="1000">Rojo</option>
+      <option value="10000">Naranja</option>
+      <option value="100000">Amarilalo</option>
+      <option value="1000000">Verde</option>
+      <option value="10000000">Azul</option>
+      <option value="100000000">Violeta</option>
+      <option value="1000000000">Gris</option>
+      <option value="10000000000">Blanco</option>
+    </select>
+  </div>
+  <div class="rbTolerancia">
+    <label for="oro">Oro</label>
+    <input type="radio" id="oro" value="oro" checked name="rbTolerancia" />
+    <label for="plata">Plata</label>
+    <input type="radio" id="plata" value="plata" name="rbTolerancia" />
+  </div>
+
+  <button onclick="cambiarColor()">Registrar</button>
+</form>
+<table id="tablaColores" style="border-collapse: collapse; width: 100%">
+  <thead>
+    <tr>
+      <th class="color1" style="border: 1px solid black">Color 1</th>
+      <th class="color2" style="border: 1px solid black">Color 2</th>
+      <th class="color3" style="border: 1px solid black">Color 3</th>
+      <th style="border: 1px solid black">Tolerancia</th>
+      <th style="border: 1px solid black">Valor</th>
+      <th style="border: 1px solid black">Valor Maximo</th>
+      <th style="border: 1px solid black">Valor Minimo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="valor1">{{valor1}}</td>
+      <td id="valor2">{{valor2}}</td>
+      <td id="valor3">{{valor3}}</td>
+      <td>{{rbTolerancia}}</td>
+      <td>{{resistenciaTotal}}</td>
+      <td>{{resistenciaMaxima}}</td>
+      <td>{{resistenciaMinima}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<
+<script>
+  var colores = {
+    Negro: "black",
+    Cafe: "brown",
+    Rojo: "red",
+    Naranja: "orange",
+    Amarillo: "yellow",
+    Verde: "green",
+    Azul: "blue",
+    Violeta: "violet",
+    Gris: "gray",
+    Blanco: "white",
+    Dorado: "Gold",
+  };
+
+  function cambiarColor() {
+    var celdas = document.querySelectorAll("#tablaColores tbody td");
+    celdas.forEach(function (celda) {
+      var color = colores[celda.textContent.trim()];
+      celda.style.backgroundColor = color || "";
+    });
+  }
+
+  cambiarColor();
+</script>

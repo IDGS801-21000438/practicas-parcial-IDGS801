@@ -28,6 +28,81 @@ def distancia():
 
      return render_template("distanciaForm.html", form = distancia_clase,primerX = primerX, primerY = primerY, segundoX = segundoX,segundoY = segundoY,distanciaTotal=distanciaTotal)
 
+
+
+@app.route("/resistencia",methods = ['GET','POST'])
+def resistencia():
+    
+
+    resistencia_clase = forms.formularioResistencias(request.form)
+    PrimeraBanda,SegundaBanda,TerceraBanda,rbTolerancia, resistenciaTotal,resistenciaMaxima,resistenciaMinima = 0,0,0,0,0,0,0
+
+
+    if request.method == 'POST':
+        PrimeraBanda = resistencia_clase.primeraBanda.data
+        SegundaBanda = resistencia_clase.segundaBanda.data
+        TerceraBanda = resistencia_clase.terceraBanda.data
+        rbTolerancia = resistencia_clase.rbTolerancia.data
+
+    colores = {
+        0:'Negro',
+        1:'Cafe',
+        2:'Rojo',
+        3:'Naranja',
+        4:'Amarillo',
+        5:'Verde',
+        6:'Azul',
+        7:'Violeta',
+        8:'Gris',
+        9:'Blanco'
+    }
+    colores3 = {
+        10:'Negro',
+        100:'Cafe',
+        1000:'Rojo',
+        10000:'Naranja',
+        100000:'Amarillo',
+        1000000:'Verde',
+        10000000:'Azul',
+        100000000:'Violeta',
+        1000000000:'Gris',
+        10000000000:'Blanco',
+    }
+
+    if rbTolerancia == 'oro':
+       rbTolerancia = 0.05
+    elif rbTolerancia == 'plata':
+        rbTolerancia = .1   
+
+
+    valor1 = colores.get(PrimeraBanda)
+    valor2 = colores.get(SegundaBanda)
+    valor3 = colores3.get(TerceraBanda)
+
+    concatenacion = (str(PrimeraBanda)+str(SegundaBanda)) 
+    resistenciaTotal1 = int(concatenacion) * TerceraBanda
+    resistenciaTotal = float(rbTolerancia) * resistenciaTotal1
+    resistenciaMinima = (resistenciaTotal1 - resistenciaTotal) / 10
+    resistenciaMaxima = (resistenciaTotal1 + resistenciaTotal)  /10
+
+
+  
+
+    print(valor1,valor2)
+
+
+    return render_template("recistencias.html",form = resistencia_clase,
+                           valor1=valor1,
+                           valor2=valor2,
+                           valor3=valor3,
+                           PrimeraBanda = PrimeraBanda,
+                           SegundaBanda=SegundaBanda,
+                           TerceraBanda=TerceraBanda,
+                           rbTolerancia=rbTolerancia,
+                           resistenciaTotal=resistenciaTotal,
+                           resistenciaMaxima=resistenciaMaxima,
+                           resistenciaMinima=resistenciaMinima)
+
 @app.route("/resultado", methods=["GET","POST"])
 def calcular():
     operacion = request.form.get("operacion")
